@@ -18,7 +18,7 @@ const prepareData = (payload) => (
   // build formatted list of launches that have NASA as customer of payload
   .reduce((acc, launch) => {
     const payloads = launch.rocket.second_stage.payloads;
-    // Count number of payloads customer on launch
+    // Check payload has NASA as customer
     const hasNasaPayload = payloads.reduce(hasNasaPayloadReducer, false); 
     if (hasNasaPayload > 0) {
       acc.push({
