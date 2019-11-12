@@ -16,7 +16,7 @@ const prepareData = (payload) => (
     const payloads = launch.rocket.second_stage.payloads;
     // Check payload has NASA as customer
     const hasNasaPayload = payloads.some(hasNasaPayloadCheck); 
-    if (hasNasaPayload > 0) {
+    if (hasNasaPayload) {
       acc.push({
         flight_number: launch.flight_number,
         mission_name: launch.mission_name,
