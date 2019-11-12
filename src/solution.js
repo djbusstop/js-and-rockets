@@ -1,9 +1,5 @@
-const hasNasaPayloadReducer = (acc, val) => {
-  val.customers.forEach((customer) => {
-    if (customer.includes('NASA')) acc = true;
-  });
-  return acc;
-};
+// Check that some customer includes NASA as substring
+const hasNasaPayloadCheck = val => val.customers.some(cust => (cust.includes('NASA')));
 
 const prepareData = (payload) => (
   payload.filter(launch => launch.launch_year === '2018')
@@ -19,7 +15,7 @@ const prepareData = (payload) => (
   .reduce((acc, launch) => {
     const payloads = launch.rocket.second_stage.payloads;
     // Check payload has NASA as customer
-    const hasNasaPayload = payloads.reduce(hasNasaPayloadReducer, false); 
+    const hasNasaPayload = payloads.some(hasNasaPayloadCheck); 
     if (hasNasaPayload > 0) {
       acc.push({
         flight_number: launch.flight_number,
